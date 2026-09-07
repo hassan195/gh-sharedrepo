@@ -33,6 +33,9 @@ jobs:
             envrironment: dev
         secrets:
             aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
+        permissions:
+            contents: read
+            id-token: write
     
     deploy-qa:
         needs: build-test
@@ -42,6 +45,9 @@ jobs:
             envrironment: qa
         secrets:
             aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
+        permissions:
+            contents: read
+            id-token: write
 
     deploy-uat: 
         needs: build-test
@@ -51,6 +57,9 @@ jobs:
             envrironment: uat
         secrets:
             aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
+        permissions:
+            contents: read
+            id-token: write
 
     deploy-preprod:
         needs: build-test
@@ -58,6 +67,9 @@ jobs:
         uses: hassan195/gh-actions/.github/workflows/deploy.yml@main
         with:
             envrironment: preprod 
+        permissions:
+            contents: read
+            id-token: write
         
     deploy-prod:
         needs: build-test
@@ -65,3 +77,6 @@ jobs:
         uses: hassan195/gh-actions/.github/workflows/deploy.yml@main
         with:
             envrironment: prod 
+        permissions:
+            contents: read
+            id-token: write
