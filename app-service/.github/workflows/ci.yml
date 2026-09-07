@@ -1,0 +1,67 @@
+name: CI/CD Pipeline
+
+on:
+    push:
+        branches:
+            - dev
+            - qa
+            - uat
+            - preprod
+            - main
+    pull_request:
+        branches:
+            - dev
+            - qa
+            - uat
+            - preprod
+            - main
+
+jobs:
+    build-test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+            
+            - name: Build and Test
+              run: make build && make test
+    deploy-dev:
+        needs: build-test
+        if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+        uses: hassan195/gh-actions/.github/workflows/deploy.yml@main
+        with:
+            envrironment: dev
+        secrets:
+            aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
+    
+    deploy-qa:
+        needs: build-test
+        if: github.event_name == 'push' && github.ref == 'refs/heads/qa'
+        uses: hassan195/gh-actions/.github/workflows/deploy.yml@main
+        with:
+            envrironment: qa
+        secrets:
+            aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
+
+    deploy-uat: 
+        needs: build-test
+        if: github.event_name == 'push' && github.ref == 'refs/heads/uat'
+        uses: hassan195/gh-actions/.github/workflows/deploy.yml@main
+        with:
+            envrironment: uat
+        secrets:
+            aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
+
+    deploy-preprod:
+        needs: build-test
+        if: github.event_name == 'push' && github.ref == 'refs/heads/preprod'
+        uses: hassan195/gh-actions/.github/workflows/deploy.yml@main
+        with:
+            envrironment: preprod 
+        
+    deploy-prod:
+        needs: build-test
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: hassan195/gh-actions/.github/workflows/deploy.yml@main
+        with:
+            envrironment: prod 
