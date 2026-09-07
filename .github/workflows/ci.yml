@@ -32,7 +32,7 @@ jobs:
         with:
             envrironment: dev
         secrets:
-            aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
+            AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
         permissions:
             contents: read
             id-token: write
