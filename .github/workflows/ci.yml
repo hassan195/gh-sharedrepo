@@ -35,7 +35,7 @@ jobs:
         with:
             envrironment: dev
         secrets:
-            AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+            aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
         permissions:
             contents: read
             id-token: write
@@ -47,7 +47,7 @@ jobs:
         with:
             envrironment: qa
         secrets:
-            AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+            aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
         permissions:
             contents: read
             id-token: write
@@ -59,7 +59,7 @@ jobs:
         with:
             envrironment: uat
         secrets:
-            AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+            aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
         permissions:
             contents: read
             id-token: write
@@ -71,7 +71,7 @@ jobs:
         with:
             envrironment: preprod 
         secrets:
-            AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+            aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
         permissions:
             contents: read
             id-token: write
@@ -83,7 +83,7 @@ jobs:
         with:
             envrironment: prod 
         secrets:
-            AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+            aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
         permissions:
             contents: read
             id-token: write
