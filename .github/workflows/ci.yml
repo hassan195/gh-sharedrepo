@@ -33,7 +33,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
         uses: hassan195/gh-actions/.github/workflows/deploy.yml@main
         with:
-            envrironment: dev
+            environment: dev
         secrets:
             aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
         permissions:
@@ -45,7 +45,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/qa'
         uses: hassan195/gh-actions/.github/workflows/deploy.yml@main
         with:
-            envrironment: qa
+            environment: qa
         secrets:
             aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
         permissions:
@@ -57,7 +57,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/uat'
         uses: hassan195/gh-actions/.github/workflows/deploy.yml@main
         with:
-            envrironment: uat
+            environment: uat
         secrets:
             aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
         permissions:
@@ -69,7 +69,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/preprod'
         uses: hassan195/gh-actions/.github/workflows/deploy.yml@main
         with:
-            envrironment: preprod 
+            environment: preprod 
         secrets:
             aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
         permissions:
@@ -81,7 +81,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: hassan195/gh-actions/.github/workflows/deploy.yml@main
         with:
-            envrironment: prod 
+            environment: prod 
         secrets:
             aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
         permissions:
