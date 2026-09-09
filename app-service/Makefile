@@ -20,4 +20,5 @@ image:
 
 deploy: image
 	@echo "Deploying to ENV=$(ENV) with TAG=$(TAG)..." 
-	./scripts/deploy.sh $(ENV) $(IMAGE_NAME):$(TAG)
+	docker rm -f $(IMAGE_NAME) || true
+	docker run -d --name $(IMAGE_NAME)-$(ENV) -p 8080:8080 $(IMAGE_NAME):$(TAG)
