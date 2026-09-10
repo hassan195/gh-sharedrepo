@@ -12,7 +12,7 @@ build:
 
 test:build
 	@echo "Running tests..."
-	python -m pytest --maxfail=1 --disable-warnings -v
+	python -m unittest discover -s . -p "test_*.py"
 
 image:
 	@echo "Building Docker image with TAG=$(TAG)..."
@@ -20,5 +20,5 @@ image:
 
 deploy: image
 	@echo "Deploying to ENV=$(ENV) with TAG=$(TAG)..." 
-	docker rm -f $(IMAGE_NAME) || true
+	docker rm -f $(IMAGE_NAME)-$(ENV) || true
 	docker run -d --name $(IMAGE_NAME)-$(ENV) -p 8080:8080 $(IMAGE_NAME):$(TAG)

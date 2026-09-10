@@ -14,11 +14,13 @@ WORKDIR /app
 
 COPY --from=build /install /usr/local
 COPY app.py .
+COPY test_app.py .
 
-USER appuser 
+USER 1001
+
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=3s --start-period=12s --retries=5 \
-   CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8080/healthz', timeout=3)" || exit 1
+   CMD ["python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/healthz', timeout=3)"]
 
 CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080"]
